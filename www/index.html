@@ -12,7 +12,7 @@
    </head>
    
    <body>
- 
+
       <!-- Views -->
       <div class="views">
          
@@ -98,7 +98,30 @@
       <script type = "text/javascript" src = "cordova.js"></script>
       <script type = "text/javascript" src = "js/index.js"></script>
       <script type = "text/javascript" src = "js/gps.js"></script>
-      
+
+
+
+	  <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-firestore.js"></script>
+
+
+	  <script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyBs1h4yBkTqq_V89TVtqyFoq0ahDHNXEDg",
+	    authDomain: "test-328b5.firebaseapp.com",
+	    databaseURL: "https://test-328b5.firebaseio.com",
+	    projectId: "test-328b5",
+	    storageBucket: "test-328b5.appspot.com",
+	    messagingSenderId: "902118517534"
+	  };
+
+	  firebase.initializeApp(config);
+	  </script>
+
+      <script type="text/javascript">var db = firebase.firestore();</script>
+
+
    </body>
 
 </html>

@@ -2,17 +2,16 @@ var grid_division=180
 
 
 var onSuccess = function(position) {
-    grid_pos=getGridPostition(position.coords.longitude,position.coords.latitude);
+    updateGPS(position.coords.latitude,position.coords.longitude)
     alert( 'Longitude: '         + position.coords.longitude         + '\n' +
-          'Latitude: '          + position.coords.latitude          + '\n' +
-/*          'Altitude: '          + position.coords.altitude          + '\n' +
+           'Latitude: '          + position.coords.latitude          + '\n' +
+/*          'Altitude: '        + position.coords.altitude          + '\n' +
           'Accuracy: '          + position.coords.accuracy          + '\n' +
           'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
           'Heading: '           + position.coords.heading           + '\n' +
           'Speed: '             + position.coords.speed             + '\n' +*/
-          'Timestamp: '         + position.timestamp                + '\n' +
-          'Grid X: '            + grid_pos[0]                       + '\n' +
-          'Grid Y: '            + grid_pos[1]                       + '\n');
+          'Timestamp: '         + position.timestamp                + '\n');
+
 };
 
 // onError Callback receives a PositionError object
@@ -32,4 +31,18 @@ function getGridPostition(longitude,latitude){
   y=Math.floor( (latitude/90)*grid_division );
   //console.log(x,y);
   return [x,y]
+}
+
+function updateGPS(lat,long,user='mroguljic'){
+  var userRef=db.collection("users").doc(user);
+  userRef.update({
+    latitude:lat,
+    longitude:long
+  }).then(function() {
+    console.log("Coordinates successfully updated!");
+})
+.catch(function(error) {
+    // The document probably doesn't exist.
+    console.error("Error updating document: ", error);
+});
 }
