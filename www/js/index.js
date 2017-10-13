@@ -16,7 +16,7 @@ dynamicNavbar: true
 // ---------------------------------
 // Phonegap
 // ---------------------------------
-document.addEventListener("deviceready", onDeviceReady, false);
+// document.addEventListener("deviceready", onDeviceReady, false);
 
 // ---------------------------------
 // Initialize Firebase
