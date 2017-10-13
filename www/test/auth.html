@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title> Auth </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <input id="txtEmail" type="email" placeholder="Email">
+      <input id="txtPassword" type="password" placeholder="Password">
+      <button id="btnLogin" class="btn btn-action"> Log in </button>
+      <button id="btnSignUp" class="btn btn-secondary"> Sign Up </button>
+      <button id="btnLogout" class="btn btn-action hide"> Log out </button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+  
+    <script>
+
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBs1h4yBkTqq_V89TVtqyFoq0ahDHNXEDg",
+        authDomain: "test-328b5.firebaseapp.com",
+        databaseURL: "https://test-328b5.firebaseio.com",
+        projectId: "test-328b5",
+        storageBucket: "test-328b5.appspot.com",
+        messagingSenderId: "902118517534"
+      };
+      firebase.initializeApp(config);
+
+      // Get elements
+      const txtEmail    = document.getElementById('txtEmail');
+      const txtPassword = document.getElementById('txtPassword');
+      const btnLogin    = document.getElementById('btnLogin');
+      const btnSignUp   = document.getElementById('btnSignUp');
+
+      btnLogin.addEventListener('click', e =>{
+        const email = txtEmail.value;
+        const pass  = txtPassword.value;
+        const auth  = firebase.auth();
+
+        const promise = auth.signInWithEmailAndPassword(email,pass);
+        promise.catch(e => console.log(e.message));
+
+      });
+
+      btnSignUp.addEventListener('click', e=>{
+        const email = txtEmail.value;
+        const pass  = txtPassword.value;
+        const auth  = firebase.auth();
+
+        const promise = auth.createUserWithEmailAndPassword(email,pass);
+        promise.catch(e => console.log(e.message));
+      });
+
+      btnLogout.addEventListener('click', e=>{
+        firebase.auth().signOut();
+      });
+
+      // Add a realtime listener
+      firebase.auth().onAuthStateChanged(firebaseUser => {
+        if(firebaseUser){
+          console.log(firebaseUser);
+        } else {
+          console.log('not logged in');
+        }
+      })
+
+    </script>
+
+
+  </body>
+
+</html>
