@@ -1,0 +1,36 @@
+{
+  "name": "klokan",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "shx rm -rf public/** && NODE_ENV=production webpack -p --progress",
+    "start": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "copy-webpack-plugin": "^4.1.1",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "html-webpack-plugin": "^2.30.1",
+    "shx": "^0.2.2",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.7.1",
+    "webpack-config-utils": "^2.3.0",
+    "webpack-dev-server": "^2.9.1"
+  },
+  "dependencies": {
+    "firebase": "^4.5.1",
+    "firestore": "^1.1.6",
+    "framework7": "^1.6.5",
+    "framework7-icons": "^0.8.9",
+    "jquery": "^3.2.1"
+  }
+}
