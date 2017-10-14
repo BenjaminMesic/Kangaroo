@@ -40,21 +40,27 @@
                <div class="tabs-swipeable-wrap">
                   <!-- Tabs, tabs wrapper -->
                   <div class="tabs">
-                     <!-- Tab 1, active by default -->
-                     <div id="tab1" class="page-content tab active">
+                      <!-- Tab 1, active by default -->
+                      <div id="tab1" class="page-content tab active">
+                  
+                        <div class="container">
+                          <input id="txtEmail" type="email" placeholder="Username">
+                          <input id="txtPassword" type="password" placeholder="Password">
+                          <button id="btnLogin" class="btn btn-action"> Log in </button>
+                          <button id="btnSignUp" class="btn btn-secondary"> Sign Up </button>
+                          <button id="btnLogout" class="btn btn-action hide"> Log out </button>
+                        </div>
+
                         <div class="content-block">
                           <button id="GPS button" onclick="getGPS()">GPS coordinates</button>
                         </div>
-                        <div class="content-block">
-                          ... Tab 1 content ...
-                        </div>
-                     </div>
-                     <!-- Tab 2 -->
-                     <div id="tab2" class="page-content tab">
+                      </div>
+                      <!-- Tab 2 -->
+                      <div id="tab2" class="page-content tab">
                         <div class="content-block">
                         ... Tab 2 content ...
                         </div>
-                     </div>
+                      </div>
                      <!-- Tab 3 -->
                      <div id="tab3" class="page-content tab">
                         <div class="content-block">
@@ -104,6 +110,7 @@
 
     <script type = "text/javascript" src = "js/index.js"></script>
     <script type = "text/javascript" src = "js/utility/gps.js"></script>
+    <script type = "text/javascript" src = "js/utility/auth.js"></script>
 
   </body>
 
