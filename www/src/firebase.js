@@ -1,4 +1,7 @@
 import * as firebase from 'firebase'
+import 'firebase/firestore'
+
+console.log(firebase.firestore)
 
 const config = {
   apiKey: "AIzaSyBs1h4yBkTqq_V89TVtqyFoq0ahDHNXEDg",
@@ -15,10 +18,7 @@ function getDb(cb) {
     return cb(cachedDb)
   }
 
-  firebase.initilizeDb(function(db) {
-    cachedDb = db
-    cb(db)
-  })
+  
 }
 
 
@@ -31,11 +31,5 @@ export function updateDb(data, user) {
       .catch(function (error) {
         console.error("Error updating document: ", error);
       });
-  })
-}
-
-export function saveInDb(data, user) {
-  getDb(db => {
-    db.saveNesto(...)
   })
 }
