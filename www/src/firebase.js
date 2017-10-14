@@ -9,14 +9,33 @@ const config = {
   messagingSenderId: "902118517534"
 };
 
-const database = 'nesto sta sad ne radi'
+let cachedDb = null
+function getDb(cb) {
+  if (cachedDb) {
+    return cb(cachedDb)
+  }
+
+  firebase.initilizeDb(function(db) {
+    cachedDb = db
+    cb(db)
+  })
+}
+
 
 export function updateDb(data, user) {
-  var userRef = database.collection("users").doc(user);
-  userRef.update(data).then(function () {
-    console.log("successfully updated!");
+  getDb(db => {
+    db.collection("users").doc(user)
+      .userRef.update(data).then(function () {
+        console.log("successfully updated!");
+      })
+      .catch(function (error) {
+        console.error("Error updating document: ", error);
+      });
   })
-  .catch(function (error) {
-    console.error("Error updating document: ", error);
-  });
+}
+
+export function saveInDb(data, user) {
+  getDb(db => {
+    db.saveNesto(...)
+  })
 }
