@@ -6,112 +6,156 @@
     <meta name = "apple-mobile-web-app-capable" content = "yes" />
     <meta name = "apple-mobile-web-app-status-bar-style" content = "black" />
     <title> Kangaroo </title>
-    <link rel = "stylesheet" href = "css/framework7.ios.min.css" />
-    <link rel = "stylesheet" href = "css/framework7.ios.colors.min.css" />
-    <link rel = "stylesheet" href = "css/framework7-icons/css/framework7-icons.css">
+    <link rel = "stylesheet" href = "css/framework7/framework7.ios.min.css" />
+    <link rel = "stylesheet" href = "css/framework7/framework7.ios.colors.min.css" />
+    <link rel = "stylesheet" href = "css/framework7/framework7-icons/css/framework7-icons.css">
+    <style>
+      .popover {
+        width: 200px;
+      }
+    </style>
   </head>
-
+   
   <body>
 
     <!-- Views -->
     <div class="views">
-       
+      
       <!-- Your main view -->
       <div class = "view view-main">
         <div class = "pages navbar-fixed toolbar-fixed">
           <div class = "page" data-page = "index">
-                   
+                
             <!-- Top Navbar-->
             <div class = "navbar">
-               <div class = "navbar-inner">
-                  <div class = "center sliding"> Kangaroo </div>
-                  <div class = "right">
-                     <a href = "#" class = "link icon-only open-panel">
-                        <i class = "icon icon-bars"></i>
-                     </a>
-                  </div>
-               </div>
+              <div class = "navbar-inner">
+                <div class = "left"> Kangaroo </div>
+                <div class = "right">
+                  <a href = "#" class = "link icon-only open-panel">
+                    <i class = "icon icon-bars"></i>
+                  </a>
+                </div>
+              </div>
             </div>
             <!-- /End of Top Navbar-->
- 
+
             <!-- Page content with tabs-->       
             <div class = "page-content">
-               <!-- Tabs swipeable wrapper, required to switch tabs with swipes -->
-               <div class="tabs-swipeable-wrap">
-                  <!-- Tabs, tabs wrapper -->
-                  <div class="tabs">
-                      <!-- Tab 1, active by default -->
-                      <div id="tab1" class="page-content tab active">
-                  
-                        <div class="container">
-                          <input id="txtEmail" type="email" placeholder="Username">
-                          <input id="txtPassword" type="password" placeholder="Password">
-                          <button id="btnLogin" class="btn btn-action"> Log in </button>
-                          <button id="btnSignUp" class="btn btn-secondary"> Sign Up </button>
-                          <button id="btnLogout" class="btn btn-action hide"> Log out </button>
-                        </div>
-
-                        <div class="content-block">
-                          <button id="GPS button" onclick="getGPS()">GPS coordinates</button>
-                        </div>
-                      </div>
-                      <!-- Tab 2 -->
-                      <div id="tab2" class="page-content tab">
-                        <div class="content-block">
-                        ... Tab 2 content ...
-                        </div>
-                      </div>
-                     <!-- Tab 3 -->
-                     <div id="tab3" class="page-content tab">
-                        <div class="content-block">
-                        ... Tab 3 content ...
-                        </div>
-                     </div>
-                  </div>
-               </div>
+              <!-- Tabs swipeable wrapper, required to switch tabs with swipes -->
+              <div class="tabs-swipeable-wrap">
+                 <!-- Tabs, tabs wrapper -->
+                 <div class="tabs">
+                    <!-- Tab 1, active by default -->
+                    <div id="tab1" class="page-content tab active">
+                       <div class="content-block">
+                        <a class="open-login-screen">Open Login Screen</a>
+                       </div>
+                    </div>
+                    <!-- Tab 2 -->
+                    <div id="tab2" class="page-content tab">
+                       <div class="content-block">
+                       ... Tab 2 content ...
+                       </div>
+                    </div>
+                    <!-- Tab 3 -->
+                    <div id="tab3" class="page-content tab">
+                       <div class="content-block">
+                       ... Tab 3 content ...
+                       </div>
+                    </div>
+                 </div>
+              </div>
             </div>
             <!-- /End of Page content with tabs--> 
-            
+
             <!-- Bottom Toolbar-->
             <div class="toolbar tabbar">
-               <div class="toolbar-inner">
-                  <a href="#tab1" class="tab-link active">
-                     <i class="icon">
-                        <i class="f7-icons"> home </i> 
-                     </i>
-                  </a>
-                  <a href="#tab2" class="tab-link">
-                     <i class="icon">
-                        <i class="f7-icons"> bell </i>
-                        <span class="badge bg-red"> 15 </span>
-                     </i>                           
-                  </a>
-                  <a href="#tab3" class="tab-link">
-                     <i class="icon">
-                        <i class="f7-icons"> world </i>
-                        <span class="badge bg-green"> 14 </span>
-                     </i>
-                  </a>
-               </div>
+              <div class="toolbar-inner">
+                 <a href="#tab1" class="tab-link active">
+                    <i class="icon">
+                       <i class="f7-icons"> home </i> 
+                    </i>
+                 </a>
+                 <a href="#tab2" class="tab-link">
+                    <i class="icon">
+                       <i class="f7-icons"> bell </i>
+                       <span class="badge bg-red"> 15 </span>
+                    </i>                           
+                 </a>
+                 <a href="#tab3" class="tab-link">
+                    <i class="icon">
+                       <i class="f7-icons"> world </i>
+                       <span class="badge bg-green"> 14 </span>
+                    </i>
+                 </a>
+              </div>
             </div>       
             <!-- /End of Bottom Toolbar-->
-                
+             
           </div>
         </div>
-      </div>             
+      </div>           
+
     </div>
 
-    <!-- Import js files-->
-    <script type = "text/javascript" src = "js/aux/framework7.min.js"></script>
+    <!-- Login screen -->  
+    <div class = "login-screen">
+      <div class="page">
+        <div class="page-content login-screen-content">
+          <div class="login-screen-title">Kangaroo</div>
+          <form>
+            <div class="list-block">
+              <ul>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title label">Email</div>
+                    <div class="item-input">
+                      <input id='email' type="text" name="email" placeholder="Your email address">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title label">Password</div>
+                    <div class="item-input">
+                      <input id='password' type="password" name="password" placeholder="Your password">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p><a id = 'signin' class="button">Sign In</a></p>
+              <p><a id = 'signup' class="button">Sign Up</a></p>
+              <p><a id = 'forgot' class="button">TBD: Forgot password?</a></p>
+              <p><a class="button close-login-screen">DEBUG: Close Login Screen</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
-    <script type = "text/javascript" src = "js/aux/firebase.js"></script>
-    <script type = "text/javascript" src = "js/aux/firebase-firestore.js"></script>
+    <!-- Right panel -->
+    <div class="panel-overlay"></div>
+    <!-- Right Panel with Cover effect -->
+    <div class="panel panel-right panel-cover">
+      <div class="content-block">
+        <p>Settings</p>
+        <p><a href="#" class="close-panel">Close</a></p>
+        <p><a href="#" class="close-panel" id='signout'>Log out</a></p>
+      </div>
+    </div>
+
+    <!-- Import js files right in that order -->
+    <script type = "text/javascript" src = "src/framework7/framework7.min.js"></script> 
     <script type = "text/javascript" src = "cordova.js"></script>
+    <script type = "text/javascript" src = "src/firebase/src/firebase.js"></script>
+    <script type = "text/javascript" src = "src/firebase/src/firebase-firestore.js"></script>
 
-    <script type = "text/javascript" src = "js/index.js"></script>
-    <script type = "text/javascript" src = "js/utility/gps.js"></script>
-    <script type = "text/javascript" src = "js/utility/auth.js"></script>
+    <script type = "text/javascript" src = "src/index.js"></script>
+    <script type = "text/javascript" src = "src/firebase/auth.js"></script>
 
-  </body>
+
+   </body>
 
 </html>
