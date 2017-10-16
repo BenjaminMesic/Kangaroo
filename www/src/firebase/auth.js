@@ -16,17 +16,18 @@ var database = firebase.firestore();
 var login_screen_trigger = true;
 
 // Add a realtime listener
-var unsubscribe = firebase.auth().onAuthStateChanged(firebaseUser => {
+var unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser){
   if(firebaseUser){
-    // console.log(firebaseUser);
+  	updateOnLogin(firebaseUser.uid)
+    //console.log(firebaseUser.uid);
     if (!login_screen_trigger){
       myApp.closeModal(myApp.loginScreen());
     }
     // console.log('logged in');
-    // myApp.alert('logged in', 'Kangaroo');
+    myApp.alert('logged in', 'Kangaroo');
   } else {
     // console.log('not logged in');
-    // myApp.alert('not logged in', 'Kangaroo');
+    myApp.alert('not logged in', 'Kangaroo');
     myApp.loginScreen();
   }
 })
@@ -39,33 +40,41 @@ const btnSignUp   = document.getElementById('signup');
 const btnSignOut  = document.getElementById('signout');
 
 // Button handler
-btnSignIn.addEventListener('click', e =>{
+btnSignIn.addEventListener('click', function(){
   const email = txtUsername.value;
   const pass  = txtPassword.value;
   const auth  = firebase.auth();
 
   const promise = auth.signInWithEmailAndPassword(email,pass);
-  promise.catch(e => {
+  promise.catch(function(e){
     console.log(e.message)
     myApp.alert(e.message, 'Kangaroo')
   });
   login_screen_trigger = false;
 });
 
-btnSignUp.addEventListener('click', e=>{
+btnSignUp.addEventListener('click', function(){
   const email = txtUsername.value;
   const pass  = txtPassword.value;
   const auth  = firebase.auth();
 
-  const promise = auth.createUserWithEmailAndPassword(email,pass);
-  promise.catch(e => {
+  const promise = auth.createUserWithEmailAndPassword(email,pass)
+  promise.catch(function(e){
     console.log(e.message)
     myApp.alert(e.message, 'Kangaroo')
   });
   login_screen_trigger = false;
 });
 
-btnSignOut.addEventListener('click', e=>{
+btnSignOut.addEventListener('click', function(){
   firebase.auth().signOut();
   login_screen_trigger = true;
 });
+
+
+
+function updateOnLogin(idToken){
+//Execute on each log in
+	getLocation()
+	//console.log(idToken);
+}
