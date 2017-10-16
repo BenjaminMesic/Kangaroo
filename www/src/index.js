@@ -9,3 +9,5 @@ var $$ = Dom7;
 // Add the view
 var mainView = myApp.addView('.view-main', {
 });
+
+var userID = null 

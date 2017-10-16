@@ -9,11 +9,6 @@
     <link rel = "stylesheet" href = "css/framework7/framework7.ios.min.css" />
     <link rel = "stylesheet" href = "css/framework7/framework7.ios.colors.min.css" />
     <link rel = "stylesheet" href = "css/framework7/framework7-icons/css/framework7-icons.css">
-    <style>
-      .popover {
-        width: 200px;
-      }
-    </style>
   </head>
    
   <body>
@@ -47,17 +42,20 @@
                  <div class="tabs">
                     <!-- Tab 1, active by default -->
                     <div id="tab1" class="page-content tab active">
-                       <div class="content-block">
+                      
+                      <div class="content-block">
                         <a class="open-login-screen">Open Login Screen</a>
-                       </div>
-                       <div><button id='forceLocationButton'>Manually update location</button></div>
+                      </div>
+
                     </div>
+                    
                     <!-- Tab 2 -->
                     <div id="tab2" class="page-content tab">
                        <div class="content-block">
                        ... Tab 2 content ...
                        </div>
                     </div>
+                    
                     <!-- Tab 3 -->
                     <div id="tab3" class="page-content tab">
                        <div class="content-block">
@@ -142,9 +140,10 @@
     <div class="panel panel-right panel-cover">
       <div class="content-block">
         <p>Settings</p>
-        <p><a href="#" class="close-panel">Close</a></p>
-        <p><a href="#" class="close-panel" id='signout'>Log out</a></p>
+        <p><a class="close-panel" id='updateLocation'>Update location</a></p>
+        <p><a class="close-panel" id='signout'>Log out</a></p>
       </div>
+        
     </div>
 
     <!-- Import js files right in that order -->
@@ -154,9 +153,8 @@
     <script type = "text/javascript" src = "src/firebase/src/firebase-firestore.js"></script>
 
     <script type = "text/javascript" src = "src/index.js"></script>
-    <script type = "text/javascript" src = "src/firebase/geolocation.js"></script>
     <script type = "text/javascript" src = "src/firebase/auth.js"></script>
-
+    <script type = "text/javascript" src = "src/firebase/database.js"></script>
 
    </body>
 
