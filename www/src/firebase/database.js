@@ -15,7 +15,8 @@ function setupPlayer(db, uid, username){
       human             : true,
       geopointPlayer    : new firebase.firestore.GeoPoint(latitude, longitude),
       geopointKangaroo  : new firebase.firestore.GeoPoint(latitude, longitude),
-      timestampPlayer   : firebase.firestore.FieldValue.serverTimestamp()
+      timestampPlayer   : firebase.firestore.FieldValue.serverTimestamp(),
+      timestampKangaroo : firebase.firestore.FieldValue.serverTimestamp()
     
     }).then(function() {
         console.log("Document successfully written!");
@@ -44,7 +45,6 @@ function updateGeoLocation(db, uid){
     db.collection("players").doc(uid).update({
     
       geopointPlayer    : new firebase.firestore.GeoPoint(latitude, longitude),
-      geopointKangaroo  : new firebase.firestore.GeoPoint(latitude, longitude),
       timestampPlayer   : firebase.firestore.FieldValue.serverTimestamp()
     
     }).then(function() {
