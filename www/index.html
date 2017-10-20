@@ -9,13 +9,14 @@
     <link rel = "stylesheet" href = "css/framework7/framework7.ios.min.css" />
     <link rel = "stylesheet" href = "css/framework7/framework7.ios.colors.min.css" />
     <link rel = "stylesheet" href = "css/framework7/framework7-icons/css/framework7-icons.css">
+    <link rel = "stylesheet" href = "css/preload.css">
+    <link rel = "stylesheet" href = "css/misc.css">
   </head>
    
   <body>
 
     <!-- Views -->
     <div class="views">
-      
       <!-- Your main view -->
       <div class = "view view-main">
         <div class = "pages navbar-fixed toolbar-fixed">
@@ -24,7 +25,20 @@
             <!-- Top Navbar-->
             <div class = "navbar">
               <div class = "navbar-inner">
-                <div class = "left"> Kangaroo </div>
+                <div class = "left">
+                  <a  data-popup=".popup-countriesVisited" class="open-popup"> 
+                    <i class="f7-icons" > flag </i>
+                    <a id='countriesVisited'> - <a>
+                  </a>
+                  <a data-popup=".popup-citiesVisited" class="open-popup"> 
+                    <i class="f7-icons" > calendar </i>
+                    <a id='citiesVisited'> - <a>
+                  </a>
+                  <a data-popup=".popup-kangoos" class="open-popup">
+                    <i class="f7-icons" > money_dollar </i>
+                    <a id='kangoos'> - <a>
+                  </a>
+                </div>
                 <div class = "right">
                   <a href = "#" class = "link icon-only open-panel">
                     <i class = "icon icon-bars"></i>
@@ -37,29 +51,41 @@
             <!-- Page content with tabs-->       
             <div class = "page-content">
               <!-- Tabs swipeable wrapper, required to switch tabs with swipes -->
-              <div class="tabs-swipeable-wrap">
+              <div class="tabs"> <!--swipeable-wrap-->
                  <!-- Tabs, tabs wrapper -->
                  <div class="tabs">
+
                     <!-- Tab 1, active by default -->
-                    <div id="tab1" class="page-content tab active">
-                      <div class="content-block">
-                        <a class="open-login-screen">Open Login Screen</a>
-                      </div>          
-                      <img id="noConnectionImg" src="img/no_connection.png" style="width:30px;height:30px;visibility:hidden;">
+                    <div id="tab1" class="page-content tab active">  <!-- keep-bars-on-scroll-->
+                      <!-- Kangaroo stats -->                      
+                      <div class="card">
+                        <!-- <div class="card-header"> Kangaroo </div>  -->
+                        <div class="card-content">
+                          <div class="card-content-inner">
+                            <div class='map' id="map"> </div>
+                          </div>
+                        </div>
+                        <div class="card-footer">
+                          <a href="#" id="yourLocation" class="link"> You </a>
+                          <a href="#" id="kangarooLocation" class="link"> Kangaroo </a>
+                          <a href="#" class="link"> Jump </a>
+                        </div>
+                      </div>
                     </div>
                     
                     <!-- Tab 2 -->
                     <div id="tab2" class="page-content tab">
-                       <div class="content-block">
-                       ... Tab 2 content ...
-                       </div>
+                      <div class="content-block">
+                        List of visitors
+                      </div>
                     </div>
                     
                     <!-- Tab 3 -->
                     <div id="tab3" class="page-content tab">
-                       <div class="content-block">
-                       ... Tab 3 content ...
-                       </div>
+                      <div class="content-block">
+                        List/Flags of all countries visited.
+                        Gallery
+                      </div>
                     </div>
                  </div>
               </div>
@@ -82,8 +108,7 @@
                  </a>
                  <a href="#tab3" class="tab-link">
                     <i class="icon">
-                       <i class="f7-icons"> world </i>
-                       <span class="badge bg-green"> 14 </span>
+                       <i class="f7-icons"> graph_round </i>
                     </i>
                  </a>
               </div>
@@ -93,43 +118,88 @@
           </div>
         </div>
       </div>           
-
     </div>
 
-    <!-- Login screen -->  
-    <div class = "login-screen">
-      <div class="page">
-        <div class="page-content login-screen-content">
-          <div class="login-screen-title">Kangaroo</div>
-          <form>
-            <div class="list-block">
-              <ul>
-                <li class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title label">Email</div>
-                    <div class="item-input">
-                      <input id='email' type="text" name="email" placeholder="Your email address">
-                    </div>
+    <!-- Login screen --> 
+    <div class="login-screen modal-in"> 
+      <div class='preload'>
+        <p> 愚公山を移す </p>
+        <p><span class="progressbar-infinite"></span></p>
+      </div>  
+    </div>
+
+    <!-- Login popup --> 
+    <div class="popup popup-login">
+
+      <div class="content-block-title">Log in</div>
+
+      <div class="list-block accordion-list">
+        <ul>
+          <li class="accordion-item">
+            <a href="#" class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title">Email</div>
+              </div>
+            </a>
+            <div class="accordion-item-content">
+              <div class="content-block">
+                <form>
+                  <div class="list-block">
+                    <ul>
+                      <li class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input">
+                            <input class='emailAddressInput' id='email' type="text" name="email" placeholder="Your email address">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input">
+                            <input class='passwordInput' id='password' type="password" name="password" placeholder="Your password">
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
                   </div>
-                </li>
-                <li class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title label">Password</div>
-                    <div class="item-input">
-                      <input id='password' type="password" name="password" placeholder="Your password">
-                    </div>
+                  <div>
+                    <p><a id = 'signin' class="button">Sign In</a></p>
+                    <p><a id = 'signup' class="button">Sign Up</a></p>
+                    <p><a id = 'forgot' class="button">To be done soon: Forgot password?</a></p>
+                    <!-- <p><a class="button close-login-screen">DEBUG: Close Login Screen</a></p> -->
                   </div>
-                </li>
-              </ul>
+                </form>
+              </div>
             </div>
-            <div>
-              <p><a id = 'signin' class="button">Sign In</a></p>
-              <p><a id = 'signup' class="button">Sign Up</a></p>
-              <p><a id = 'forgot' class="button">TBD: Forgot password?</a></p>
-              <p><a class="button close-login-screen">DEBUG: Close Login Screen</a></p>
+          </li>
+
+          <li class="accordion-item">
+            <a href="#" class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title"> Facebook </div>
+              </div>
+            </a>
+            <div class="accordion-item-content">
+              <div class="content-block">
+                <p> To be done soon. </p>
+              </div>
             </div>
-          </form>
-        </div>
+          </li>
+
+          <li class="accordion-item">
+            <a href="#" class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title"> Gmail </div>
+              </div>
+            </a>
+            <div class="accordion-item-content">
+              <div class="content-block">
+                <p> To be done soon. </p>
+              </div>
+            </div>
+          </li>
+
+        </ul>
       </div>
     </div>
 
@@ -139,22 +209,57 @@
     <div class="panel panel-right panel-cover">
       <div class="content-block">
         <p>Settings</p>
-        <p><a class="close-panel" id='updateLocation'>Update location</a></p>
+        <!-- <p><a class="close-panel" id='updateLocation'>Update location</a></p> -->
         <p><a class="close-panel" id='signout'>Log out</a></p>
-      </div>
+        <p><a class="close-panel" id='deleteAccount'>Delete account</a></p>
         
+      </div>     
+    </div>
+
+    <!-- Countries visited -->
+    <div class="popup popup-countriesVisited">
+      <div class="content-block">
+        <p>Explanation</p>
+        <p><a href="#" class="close-popup">Close</a></p>
+      </div>
+    </div>
+
+    <!-- Cities visited -->
+    <div class="popup popup-citiesVisited">
+      <div class="content-block">
+        <p>Explanation</p>
+        <p><a href="#" class="close-popup">Close</a></p>
+      </div>
+    </div>
+
+    <!-- Kangoos explanation -->
+    <div class="popup popup-kangoos">
+      <div class="content-block">
+        <p>Explanation what are kangoos.</p>
+        <p><a href="#" class="close-popup">Close</a></p>
+      </div>
     </div>
 
     <!-- Import js files right in that order -->
-    <script type = "text/javascript" src = "src/framework7/framework7.min.js"></script> 
+    <!-- Engine -->
+    <script type = "text/javascript" src = "src/framework7/framework7.min.js"></script>
+    <script type = "text/javascript" src = "src/jquery/jquery-1.4.2.js"></script> 
     <script type = "text/javascript" src = "cordova.js"></script>
     <script type = "text/javascript" src = "src/firebase/src/firebase.js"></script>
     <script type = "text/javascript" src = "src/firebase/src/firebase-firestore.js"></script>
 
-    <script type = "text/javascript" src = "src/index.js"></script>
+    <!-- Config files -->
+    <script type = "text/javascript" src = "src/config/firebase.js"></script>
+    <script type = "text/javascript" src = "src/config/gmaps.js"></script>
+
     <script type = "text/javascript" src = "src/firebase/auth.js"></script>
     <script type = "text/javascript" src = "src/firebase/database.js"></script>
-    <script type = "text/javascript" src = "src/firebase/connection.js"></script>
+    <script type = "text/javascript" src = "src/gmaps/gmaps.js"></script>
+
+    <script type = "text/javascript" src = "src/index.js"></script>
+    <script type = "text/javascript" src = "src/buttons.js"></script>
+
+
 
    </body>
 
